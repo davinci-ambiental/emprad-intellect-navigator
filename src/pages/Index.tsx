@@ -16,7 +16,7 @@ const Index: React.FC = () => {
             <img 
               src="/lovable-uploads/97179c6a-6538-4ec3-8c93-b4d8f74455e3.png" 
               alt="EMPRAD Logo" 
-              className="h-16 md:h-20 lg:h-24"
+              className="h-16 md:h-20 lg:h-24 bg-white/20 p-2 rounded"
             />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
