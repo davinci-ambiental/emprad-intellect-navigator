@@ -21,6 +21,9 @@ const Header: React.FC = () => {
           <Link to="/about" className="text-white hover:text-emprad-light-purple transition-colors">
             Sobre
           </Link>
+          <Link to="/research-assistant" className="text-white hover:text-emprad-light-purple transition-colors">
+            Assistente de Pesquisa
+          </Link>
         </nav>
         <div className="flex items-center space-x-4">
           <span className="text-white">Bem-vindo, Pesquisador</span>

@@ -31,7 +31,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ isUser, content, references, 
             
             {references && references.length > 0 && (
               <div className="mt-4 pt-4 border-t border-gray-200">
-                <h4 className="font-semibold text-emprad-dark-purple mb-2">Referências ({references.length})</h4>
+                <h4 className="font-semibold text-emprad-dark-purple mb-2">Referências Encontradas</h4>
                 <div className="space-y-3">
                   {references.map((article, index) => (
                     <ArticleReference key={index} article={article} />
