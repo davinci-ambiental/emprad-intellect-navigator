@@ -2,64 +2,72 @@
 import React from 'react';
 import Header from '../components/Header';
 import ChatInterface from '../components/ChatInterface';
-import { Book, Search, Download } from 'lucide-react';
+import { Book, Search, Download, Database } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const ResearchAssistant: React.FC = () => {
+  const isMobile = useIsMobile();
+  
   return (
-    <div className="flex flex-col h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen bg-gray-50">
       <Header />
       
       <div className="container mx-auto px-4 py-6 flex-grow flex flex-col">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-emprad-dark-purple">Assistente de Pesquisa EMPRAD</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-emprad-dark-purple">Assistente de Pesquisa EMPRAD</h1>
           <p className="text-gray-600 mt-2">
             Use nossa IA para pesquisar entre os 1585 artigos científicos do EMPRAD e encontrar informações relevantes para sua pesquisa.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-6">
-          <div className="bg-white p-4 rounded-lg shadow-sm border flex items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6">
+          <Link to="/smart-search" className="bg-white p-4 rounded-lg shadow-sm border flex items-center hover:shadow-md transition-shadow">
             <div className="rounded-full bg-emprad-light-purple p-3 mr-4">
-              <Search className="h-6 w-6 text-emprad-dark-purple" />
+              <Search className="h-5 w-5 md:h-6 md:w-6 text-emprad-dark-purple" />
             </div>
             <div>
               <h3 className="font-medium">Pesquisa Inteligente</h3>
               <p className="text-sm text-gray-600">Busca contextual em todos os artigos</p>
             </div>
-          </div>
+          </Link>
           
-          <div className="bg-white p-4 rounded-lg shadow-sm border flex items-center">
+          <Link to="/academic-citations" className="bg-white p-4 rounded-lg shadow-sm border flex items-center hover:shadow-md transition-shadow">
             <div className="rounded-full bg-emprad-light-purple p-3 mr-4">
-              <Book className="h-6 w-6 text-emprad-dark-purple" />
+              <Book className="h-5 w-5 md:h-6 md:w-6 text-emprad-dark-purple" />
             </div>
             <div>
               <h3 className="font-medium">Citações Acadêmicas</h3>
               <p className="text-sm text-gray-600">Referências precisas e formatadas</p>
             </div>
-          </div>
+          </Link>
           
-          <div className="bg-white p-4 rounded-lg shadow-sm border flex items-center">
+          <Link to="/direct-download" className="bg-white p-4 rounded-lg shadow-sm border flex items-center hover:shadow-md transition-shadow">
             <div className="rounded-full bg-emprad-light-purple p-3 mr-4">
-              <Download className="h-6 w-6 text-emprad-dark-purple" />
+              <Download className="h-5 w-5 md:h-6 md:w-6 text-emprad-dark-purple" />
             </div>
             <div>
               <h3 className="font-medium">Download Direto</h3>
               <p className="text-sm text-gray-600">Acesso aos artigos completos</p>
             </div>
-          </div>
+          </Link>
           
-          <div className="bg-white p-4 rounded-lg shadow-sm border flex items-center">
+          <Link to="/indexed-articles" className="bg-white p-4 rounded-lg shadow-sm border flex items-center hover:shadow-md transition-shadow">
             <div className="rounded-full bg-emprad-light-purple p-3 mr-4">
-              <div className="font-bold text-lg text-emprad-dark-purple">1585</div>
+              <Database className="h-5 w-5 md:h-6 md:w-6 text-emprad-dark-purple" />
             </div>
             <div>
               <h3 className="font-medium">Artigos Indexados</h3>
               <p className="text-sm text-gray-600">Base de conhecimento abrangente</p>
             </div>
-          </div>
+          </Link>
         </div>
         
         <div className="flex-grow bg-white rounded-lg shadow-sm border overflow-hidden flex flex-col">
+          <div className="bg-emprad-light-purple p-4 border-b">
+            <h2 className="text-emprad-dark-purple font-semibold">Chat com o Assistente EMPRAD</h2>
+            <p className="text-sm text-gray-600">Pergunte sobre empreendedorismo, inovação, gestão e outros temas de interesse</p>
+          </div>
           <ChatInterface />
         </div>
       </div>

@@ -2,20 +2,22 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
-import { mockQueryArticles } from '../services/articleService';
+import { mockQueryArticles, generateEnhancedAIResponse } from '../services/articleService';
 import { Message, Article } from '../types';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '0',
-      content: 'Olá! Sou o assistente de pesquisa EMPRAD. Como posso ajudar com sua pesquisa nos artigos científicos do EMPRAD?',
+      content: 'Olá! Sou o assistente de pesquisa EMPRAD. Como posso ajudar com sua pesquisa nos artigos científicos do EMPRAD? Você pode me perguntar sobre temas como empreendedorismo, inovação, gestão ou sustentabilidade.',
       isUser: false,
       timestamp: new Date(),
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -37,14 +39,21 @@ const ChatInterface: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // In a real implementation, this would call an actual LLM API
-      // that processes the query against the EMPRAD articles database
       console.log('Querying:', content);
       const articles = await mockQueryArticles(content);
       
-      // Simulate AI response delay
+      // Generate enhanced AI response
       setTimeout(() => {
-        const aiResponse = generateAIResponse(content, articles);
+        const aiResponseContent = generateEnhancedAIResponse(content, articles);
+        
+        const aiResponse: Message = {
+          id: Date.now().toString(),
+          content: aiResponseContent,
+          isUser: false,
+          references: articles,
+          timestamp: new Date(),
+        };
+        
         setMessages((prev) => [...prev, aiResponse]);
         setIsLoading(false);
       }, 2000);
@@ -61,47 +70,6 @@ const ChatInterface: React.FC = () => {
       ]);
       setIsLoading(false);
     }
-  };
-
-  const generateAIResponse = (query: string, articles: Article[]): Message => {
-    let responseContent = '';
-    
-    if (articles.length === 0) {
-      responseContent = `Não encontrei artigos específicos relacionados à sua consulta sobre "${query}". Você poderia reformular sua pergunta ou fornecer mais detalhes?`;
-    } else {
-      responseContent = `Com base na sua consulta sobre "${query}", encontrei ${articles.length} artigos relevantes nos anais do EMPRAD:\n\n`;
-      
-      // Add a short summary based on the articles
-      responseContent += `Os artigos encontrados abordam principalmente ${getTopics(articles)} e foram publicados entre ${getYearRange(articles)}. ${getAuthorSummary(articles)}\n\n`;
-      
-      responseContent += `Você pode encontrar mais detalhes nas referências abaixo, incluindo links para o texto completo de cada artigo.`;
-    }
-
-    return {
-      id: Date.now().toString(),
-      content: responseContent,
-      isUser: false,
-      references: articles,
-      timestamp: new Date(),
-    };
-  };
-
-  // Helper functions to generate summary text
-  const getTopics = (articles: Article[]): string => {
-    // In a real implementation, this would extract actual topics
-    return 'gestão organizacional, inovação empresarial e métodos de pesquisa aplicada';
-  };
-
-  const getYearRange = (articles: Article[]): string => {
-    const years = articles.map(a => a.year);
-    const min = Math.min(...years);
-    const max = Math.max(...years);
-    return min === max ? `${min}` : `${min} e ${max}`;
-  };
-
-  const getAuthorSummary = (articles: Article[]): string => {
-    // In a real implementation, this would analyze the most frequent authors
-    return 'Diversos pesquisadores reconhecidos contribuíram para esse tema, incluindo trabalhos colaborativos entre diferentes instituições acadêmicas.';
   };
 
   return (
