@@ -3,6 +3,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,6 +50,54 @@ const Header: React.FC = () => {
           <Link to="/articles" className="text-white font-medium hover:text-yellow-300 transition-colors">
             TRABALHOS
           </Link>
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-white font-medium bg-transparent hover:bg-blue-800 hover:text-yellow-300">
+                  ASSISTENTE DE PESQUISA
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="bg-blue-950 min-w-[220px] p-2">
+                  <ul className="flex flex-col">
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link to="/research-assistant" className="block py-2 px-4 text-white hover:text-yellow-300 transition-colors">
+                          Assistente de Pesquisa
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link to="/smart-search" className="block py-2 px-4 text-white hover:text-yellow-300 transition-colors">
+                          Pesquisa Inteligente
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link to="/academic-citations" className="block py-2 px-4 text-white hover:text-yellow-300 transition-colors">
+                          Citações Acadêmicas
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link to="/direct-download" className="block py-2 px-4 text-white hover:text-yellow-300 transition-colors">
+                          Download Direto
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link to="/indexed-articles" className="block py-2 px-4 text-white hover:text-yellow-300 transition-colors">
+                          Artigos Indexados
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
           <Link to="/about" className="text-white font-medium hover:text-yellow-300 transition-colors">
             ÁREAS
           </Link>
@@ -85,6 +141,46 @@ const Header: React.FC = () => {
             >
               TRABALHOS
             </Link>
+            <div className="py-2 px-4">
+              <span className="text-white font-medium">ASSISTENTE DE PESQUISA</span>
+              <div className="ml-4 mt-2 space-y-2">
+                <Link 
+                  to="/research-assistant" 
+                  className="block text-white hover:text-yellow-300 transition-colors py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Assistente de Pesquisa
+                </Link>
+                <Link 
+                  to="/smart-search" 
+                  className="block text-white hover:text-yellow-300 transition-colors py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Pesquisa Inteligente
+                </Link>
+                <Link 
+                  to="/academic-citations" 
+                  className="block text-white hover:text-yellow-300 transition-colors py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Citações Acadêmicas
+                </Link>
+                <Link 
+                  to="/direct-download" 
+                  className="block text-white hover:text-yellow-300 transition-colors py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Download Direto
+                </Link>
+                <Link 
+                  to="/indexed-articles" 
+                  className="block text-white hover:text-yellow-300 transition-colors py-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Artigos Indexados
+                </Link>
+              </div>
+            </div>
             <Link 
               to="/about" 
               className="text-white font-medium hover:text-yellow-300 transition-colors py-2 px-4"
