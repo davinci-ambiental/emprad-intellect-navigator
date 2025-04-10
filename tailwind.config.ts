@@ -26,11 +26,11 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				emprad: {
-					blue: '#2e3192', // Azul EMPRAD baseado no logo fornecido
-					'dark-blue': '#1a1b5f',
-					'light-blue': '#5457b6',
-					'white': '#FFFFFF',
-					'light-gray': '#F5F5F5',
+					purple: '#9b87f5',
+					'dark-purple': '#7E69AB',
+					'deeper-purple': '#6E59A5',
+					'charcoal': '#1A1F2C',
+					'light-purple': '#E5DEFF',
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
