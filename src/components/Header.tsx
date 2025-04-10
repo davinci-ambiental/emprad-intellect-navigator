@@ -12,8 +12,8 @@ const Header: React.FC = () => {
         <div className="flex items-center space-x-2">
           <Link to="/" className="flex items-center">
             <img 
-              src="/lovable-uploads/fe91b522-b4aa-44bd-925d-93367ac78a50.png" 
-              alt="EMPRAD 2025 Logo" 
+              src="/lovable-uploads/97179c6a-6538-4ec3-8c93-b4d8f74455e3.png" 
+              alt="EMPRAD Logo" 
               className="h-8 md:h-10"
             />
           </Link>

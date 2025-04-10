@@ -12,6 +12,13 @@ const Index: React.FC = () => {
       
       <div className="bg-emprad-purple py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
+          <div className="flex justify-center mb-6">
+            <img 
+              src="/lovable-uploads/97179c6a-6538-4ec3-8c93-b4d8f74455e3.png" 
+              alt="EMPRAD Logo" 
+              className="h-16 md:h-20 lg:h-24"
+            />
+          </div>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             EMPRAD 2025
           </h1>
