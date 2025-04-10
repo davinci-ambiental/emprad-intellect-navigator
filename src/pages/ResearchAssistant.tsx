@@ -11,7 +11,7 @@ const ResearchAssistant: React.FC = () => {
       
       <div className="container mx-auto px-4 py-6 flex-grow flex flex-col">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-emprad-dark-purple">Assistente de Pesquisa EMPRAD</h1>
+          <h1 className="text-3xl font-bold text-emprad-blue">Assistente de Pesquisa EMPRAD</h1>
           <p className="text-gray-600 mt-2">
             Use nossa IA para pesquisar entre os 1585 artigos científicos do EMPRAD e encontrar informações relevantes para sua pesquisa.
           </p>
@@ -19,8 +19,8 @@ const ResearchAssistant: React.FC = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-6">
           <div className="bg-white p-4 rounded-lg shadow-sm border flex items-center">
-            <div className="rounded-full bg-emprad-light-purple p-3 mr-4">
-              <Search className="h-6 w-6 text-emprad-dark-purple" />
+            <div className="rounded-full bg-emprad-light-gray p-3 mr-4">
+              <Search className="h-6 w-6 text-emprad-blue" />
             </div>
             <div>
               <h3 className="font-medium">Pesquisa Inteligente</h3>
@@ -29,8 +29,8 @@ const ResearchAssistant: React.FC = () => {
           </div>
           
           <div className="bg-white p-4 rounded-lg shadow-sm border flex items-center">
-            <div className="rounded-full bg-emprad-light-purple p-3 mr-4">
-              <Book className="h-6 w-6 text-emprad-dark-purple" />
+            <div className="rounded-full bg-emprad-light-gray p-3 mr-4">
+              <Book className="h-6 w-6 text-emprad-blue" />
             </div>
             <div>
               <h3 className="font-medium">Citações Acadêmicas</h3>
@@ -39,8 +39,8 @@ const ResearchAssistant: React.FC = () => {
           </div>
           
           <div className="bg-white p-4 rounded-lg shadow-sm border flex items-center">
-            <div className="rounded-full bg-emprad-light-purple p-3 mr-4">
-              <Download className="h-6 w-6 text-emprad-dark-purple" />
+            <div className="rounded-full bg-emprad-light-gray p-3 mr-4">
+              <Download className="h-6 w-6 text-emprad-blue" />
             </div>
             <div>
               <h3 className="font-medium">Download Direto</h3>
@@ -49,8 +49,8 @@ const ResearchAssistant: React.FC = () => {
           </div>
           
           <div className="bg-white p-4 rounded-lg shadow-sm border flex items-center">
-            <div className="rounded-full bg-emprad-light-purple p-3 mr-4">
-              <div className="font-bold text-lg text-emprad-dark-purple">1585</div>
+            <div className="rounded-full bg-emprad-light-gray p-3 mr-4">
+              <div className="font-bold text-lg text-emprad-blue">1585</div>
             </div>
             <div>
               <h3 className="font-medium">Artigos Indexados</h3>
