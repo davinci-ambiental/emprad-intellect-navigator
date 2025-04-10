@@ -19,24 +19,24 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ isUser, content, references, 
 
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`}>
-      <div className={`${isMobile ? 'max-w-[95%]' : 'max-w-[80%]'} ${isUser ? 'bg-emprad-purple text-white' : 'bg-gray-100 border'} rounded-xl p-4 shadow`}>
+      <div className={`${isMobile ? 'max-w-[95%]' : 'max-w-[80%]'} ${isUser ? 'bg-[#283691] text-white' : 'bg-gray-100 border'} rounded-xl p-4 shadow`}>
         <div className="flex items-start gap-3">
-          <div className={`w-8 h-8 rounded-full flex items-center justify-center ${isUser ? 'bg-emprad-dark-purple' : 'bg-emprad-light-purple'}`}>
+          <div className={`w-8 h-8 rounded-full flex items-center justify-center ${isUser ? 'bg-[#1A2670]' : 'bg-blue-100'}`}>
             {isUser ? (
               <span className="text-white font-medium">U</span>
             ) : (
-              <MessageCircle className="w-4 h-4 text-emprad-dark-purple" />
+              <MessageCircle className="w-4 h-4 text-[#283691]" />
             )}
           </div>
           <div className="flex-1">
             <div className="font-medium">{isUser ? 'Você' : 'Assistente EMPRAD'}</div>
-            <div className="prose prose-sm max-w-none mt-2">
+            <div className="prose prose-sm max-w-none mt-2 prose-headings:text-[#283691] prose-headings:font-semibold prose-strong:font-bold">
               <ReactMarkdown>{content}</ReactMarkdown>
             </div>
             
             {references && references.length > 0 && (
               <div className="mt-5 pt-4 border-t border-gray-200">
-                <h4 className="font-semibold text-emprad-dark-purple mb-3">Referências Encontradas</h4>
+                <h4 className="font-semibold text-[#283691] mb-3">Referências Encontradas</h4>
                 <div className="space-y-4">
                   {references.map((article, index) => (
                     <ArticleReference key={index} article={article} />
