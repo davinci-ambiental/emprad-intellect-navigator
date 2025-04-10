@@ -74,13 +74,6 @@ const Header: React.FC = () => {
                     </li>
                     <li>
                       <NavigationMenuLink asChild>
-                        <Link to="/academic-citations" className="block py-2 px-4 text-white hover:text-yellow-300 transition-colors">
-                          Citações Acadêmicas
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink asChild>
                         <Link to="/direct-download" className="block py-2 px-4 text-white hover:text-yellow-300 transition-colors">
                           Download Direto
                         </Link>
@@ -157,13 +150,6 @@ const Header: React.FC = () => {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Pesquisa Inteligente
-                </Link>
-                <Link 
-                  to="/academic-citations" 
-                  className="block text-white hover:text-yellow-300 transition-colors py-1"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Citações Acadêmicas
                 </Link>
                 <Link 
                   to="/direct-download" 
