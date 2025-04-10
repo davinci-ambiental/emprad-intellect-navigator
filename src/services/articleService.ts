@@ -3,7 +3,7 @@ import { Article } from '../types';
 
 // This is a mock database of EMPRAD articles
 // In a real implementation, this would be replaced with an actual database query
-const mockArticlesDatabase: Article[] = [
+export const mockArticlesDatabase: Article[] = [
   {
     id: '1',
     title: 'Inovação em Práticas de Gestão: Um Estudo de Caso em Empresas Brasileiras',
