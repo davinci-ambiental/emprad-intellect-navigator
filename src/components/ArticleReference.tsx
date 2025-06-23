@@ -27,22 +27,25 @@ const ArticleReference: React.FC<ArticleReferenceProps> = ({ article }) => {
       // Simular geração de resumo com IA
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      const generatedSummary = `**Resumo do artigo "${article.title}"**
+      const generatedSummary = `<strong>Resumo Executivo:</strong> Este estudo aborda ${article.keywords.slice(0, 2).join(' e ')} no contexto brasileiro, oferecendo uma análise abrangente das práticas e teorias relacionadas ao tema.
 
-**Objetivo:** Este estudo investiga ${article.keywords.slice(0, 2).join(' e ')} no contexto brasileiro, buscando compreender suas implicações práticas e teóricas.
+<strong>Objetivo Principal:</strong> Investigar e analisar ${article.keywords[0]} com foco em suas aplicações práticas e contribuições teóricas para o campo de estudo.
 
-**Metodologia:** Os autores utilizaram uma abordagem qualitativa/quantitativa para analisar dados coletados através de pesquisas de campo e análise documental.
+<strong>Metodologia:</strong> A pesquisa utilizou uma abordagem mista (qualitativa e quantitativa), combinando análise documental, pesquisas de campo e estudos de caso para garantir uma visão abrangente do tema.
 
-**Principais Resultados:**
-- Identificação de padrões significativos relacionados a ${article.keywords[0]}
-- Estabelecimento de correlações entre ${article.keywords.slice(0, 2).join(' e ')}
-- Proposição de modelo conceitual para aplicação prática
+<strong>Principais Resultados:</strong>
+• Identificação de padrões significativos relacionados a ${article.keywords[0]}
+• Estabelecimento de correlações entre ${article.keywords.slice(0, 2).join(' e ')}
+• Desenvolvimento de framework conceitual aplicável ao contexto organizacional
+• Validação empírica dos constructos teóricos propostos
 
-**Contribuições:** O estudo contribui para o avanço do conhecimento em ${article.keywords[0]}, oferecendo insights valiosos para pesquisadores e profissionais da área.
+<strong>Contribuições Teóricas:</strong> O estudo avança o conhecimento teórico em ${article.keywords[0]}, propondo novos modelos conceituais e refinando teorias existentes na área.
 
-**Limitações:** O escopo geográfico e temporal da pesquisa pode limitar a generalização dos resultados.
+<strong>Contribuições Práticas:</strong> Os achados oferecem diretrizes práticas para gestores e profissionais, incluindo ferramentas e metodologias aplicáveis em contextos organizacionais reais.
 
-**Implicações Práticas:** Os achados sugerem diretrizes para implementação de estratégias mais eficazes em ${article.keywords[0]}.`;
+<strong>Limitações do Estudo:</strong> O escopo geográfico e temporal da pesquisa, bem como a especificidade do contexto brasileiro, podem limitar a generalização dos resultados para outros contextos.
+
+<strong>Implicações para Pesquisas Futuras:</strong> O trabalho abre caminhos para investigações adicionais em ${article.keywords[0]}, sugerindo áreas promissoras para desenvolvimento de novos estudos.`;
 
       setSummary(generatedSummary);
       setShowSummary(true);
@@ -133,15 +136,16 @@ const ArticleReference: React.FC<ArticleReferenceProps> = ({ article }) => {
               ✕
             </Button>
           </div>
-          <div className="text-sm text-gray-700 whitespace-pre-line">
-            {summary}
-          </div>
+          <div 
+            className="text-sm text-gray-700 whitespace-pre-line"
+            dangerouslySetInnerHTML={{ __html: summary }}
+          />
           <div className="mt-3 flex gap-2">
             <Button
               variant="outline"
               size="sm"
               onClick={() => {
-                navigator.clipboard.writeText(summary);
+                navigator.clipboard.writeText(summary.replace(/<[^>]*>/g, ''));
                 toast.success("Resumo copiado para a área de transferência!");
               }}
               className="text-emprad-purple border-emprad-purple hover:bg-emprad-light-purple"
