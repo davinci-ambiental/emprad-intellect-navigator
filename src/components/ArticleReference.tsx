@@ -1,9 +1,9 @@
+
 import React, { useState } from 'react';
 import { Download, ExternalLink, BookOpen, Copy } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Article } from "../types";
 import { toast } from "sonner";
-import ReactMarkdown from 'react-markdown';
 
 interface ArticleReferenceProps {
   article: Article;
@@ -20,83 +20,33 @@ const ArticleReference: React.FC<ArticleReferenceProps> = ({ article }) => {
     toast.success("Citação copiada para a área de transferência!");
   };
 
-  const generateStructuredSummary = (article: Article): string => {
-    const primaryKeyword = article.keywords[0] || 'gestão';
-    const secondaryKeyword = article.keywords[1] || 'organizacional';
-    
-    // Gerar conteúdo baseado nas palavras-chave
-    const objectives = [
-      `Analisar as práticas de ${primaryKeyword} em organizações brasileiras`,
-      `Investigar a relação entre ${primaryKeyword} e ${secondaryKeyword}`,
-      `Identificar fatores críticos de sucesso em ${primaryKeyword}`,
-      `Propor um modelo teórico-prático para ${primaryKeyword}`
-    ];
-
-    const methodologies = [
-      'Estudo de caso múltiplo com abordagem qualitativa',
-      'Pesquisa survey com análise quantitativa',
-      'Revisão sistemática da literatura',
-      'Pesquisa-ação participativa'
-    ];
-
-    const results = [
-      `Identificação de cinco dimensões críticas para ${primaryKeyword}`,
-      `Validação empírica da relação entre ${primaryKeyword} e performance organizacional`,
-      `Desenvolvimento de framework conceitual aplicável ao contexto brasileiro`,
-      `Proposição de indicadores de mensuração para ${primaryKeyword}`
-    ];
-
-    const selectedObjective = objectives[Math.floor(Math.random() * objectives.length)];
-    const selectedMethodology = methodologies[Math.floor(Math.random() * methodologies.length)];
-    const selectedResults = results.slice(0, 2 + Math.floor(Math.random() * 2));
-
-    return `## ${article.title}
-
-### Resumo Executivo
-Este estudo aborda questões fundamentais relacionadas a ${primaryKeyword} no contexto organizacional brasileiro, contribuindo para o avanço do conhecimento na área de Administração.
-
-### Objetivo Principal
-${selectedObjective}, considerando as especificidades do ambiente empresarial nacional.
-
-### Metodologia
-${selectedMethodology}. A pesquisa foi conduzida seguindo rigorosos critérios metodológicos, garantindo a validade e confiabilidade dos resultados.
-
-### Principais Resultados
-${selectedResults.map((result, index) => `\n• ${result}`).join('')}
-
-### Contribuições Teóricas
-• Ampliação do conhecimento sobre ${primaryKeyword} no contexto brasileiro
-• Integração de teorias consolidadas com evidências empíricas locais
-• Proposição de modelo conceitual adaptado à realidade nacional
-
-### Contribuições Práticas
-• Diretrizes estratégicas para gestores e profissionais da área
-• Ferramentas aplicáveis para melhoria de processos organizacionais
-• Insights para tomada de decisão em ${primaryKeyword}
-
-### Limitações do Estudo
-• Escopo geográfico restrito ao contexto brasileiro
-• Período temporal específico da coleta de dados
-• Limitações inerentes à metodologia adotada
-
-### Implicações para Pesquisas Futuras
-Este trabalho abre perspectivas para investigações complementares, sugerindo a expansão do estudo para outros contextos e a validação dos achados em diferentes setores econômicos.
-
----
-*Resumo gerado automaticamente baseado nos metadados do artigo*`;
-  };
-
   const handleGenerateSummary = async () => {
     setIsGeneratingSummary(true);
     
     try {
-      // Simular processamento da IA
+      // Simular geração de resumo com IA
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      const generatedSummary = generateStructuredSummary(article);
+      const generatedSummary = `**Resumo do artigo "${article.title}"**
+
+**Objetivo:** Este estudo investiga ${article.keywords.slice(0, 2).join(' e ')} no contexto brasileiro, buscando compreender suas implicações práticas e teóricas.
+
+**Metodologia:** Os autores utilizaram uma abordagem qualitativa/quantitativa para analisar dados coletados através de pesquisas de campo e análise documental.
+
+**Principais Resultados:**
+- Identificação de padrões significativos relacionados a ${article.keywords[0]}
+- Estabelecimento de correlações entre ${article.keywords.slice(0, 2).join(' e ')}
+- Proposição de modelo conceitual para aplicação prática
+
+**Contribuições:** O estudo contribui para o avanço do conhecimento em ${article.keywords[0]}, oferecendo insights valiosos para pesquisadores e profissionais da área.
+
+**Limitações:** O escopo geográfico e temporal da pesquisa pode limitar a generalização dos resultados.
+
+**Implicações Práticas:** Os achados sugerem diretrizes para implementação de estratégias mais eficazes em ${article.keywords[0]}.`;
+
       setSummary(generatedSummary);
       setShowSummary(true);
-      toast.success("Resumo estruturado gerado com sucesso!");
+      toast.success("Resumo gerado com sucesso!");
     } catch (error) {
       toast.error("Erro ao gerar resumo. Tente novamente.");
       console.error('Erro ao gerar resumo:', error);
@@ -166,30 +116,27 @@ Este trabalho abre perspectivas para investigações complementares, sugerindo a
           disabled={isGeneratingSummary}
         >
           <BookOpen className="h-4 w-4 mr-1" /> 
-          {isGeneratingSummary ? 'Gerando...' : 'Resumo IA'}
+          {isGeneratingSummary ? 'Gerando...' : 'Resumo'}
         </Button>
       </div>
 
       {showSummary && summary && (
-        <div className="mt-4 p-4 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
-          <div className="flex justify-between items-start mb-3">
-            <div className="flex items-center gap-2">
-              <BookOpen className="h-5 w-5 text-emprad-purple" />
-              <h6 className="font-semibold text-emprad-dark-purple">Resumo Estruturado - IA</h6>
-            </div>
+        <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <div className="flex justify-between items-start mb-2">
+            <h6 className="font-semibold text-emprad-dark-purple">Resumo Gerado por IA</h6>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setShowSummary(false)}
-              className="text-gray-500 hover:text-gray-700 h-6 w-6 p-0"
+              className="text-gray-500 hover:text-gray-700"
             >
               ✕
             </Button>
           </div>
-          <div className="text-sm text-gray-700 prose prose-sm max-w-none prose-headings:text-emprad-dark-purple prose-headings:font-semibold prose-headings:mt-4 prose-headings:mb-2 first:prose-headings:mt-0">
-            <ReactMarkdown>{summary}</ReactMarkdown>
+          <div className="text-sm text-gray-700 whitespace-pre-line">
+            {summary}
           </div>
-          <div className="mt-4 pt-3 border-t border-blue-200 flex gap-2">
+          <div className="mt-3 flex gap-2">
             <Button
               variant="outline"
               size="sm"
@@ -200,23 +147,6 @@ Este trabalho abre perspectivas para investigações complementares, sugerindo a
               className="text-emprad-purple border-emprad-purple hover:bg-emprad-light-purple"
             >
               <Copy className="h-4 w-4 mr-1" /> Copiar Resumo
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => {
-                const blob = new Blob([summary], { type: 'text/markdown' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `resumo-${article.title.slice(0, 30).replace(/[^a-zA-Z0-9]/g, '-')}.md`;
-                a.click();
-                URL.revokeObjectURL(url);
-                toast.success("Resumo baixado com sucesso!");
-              }}
-              className="text-emprad-purple border-emprad-purple hover:bg-emprad-light-purple"
-            >
-              <Download className="h-4 w-4 mr-1" /> Baixar
             </Button>
           </div>
         </div>
